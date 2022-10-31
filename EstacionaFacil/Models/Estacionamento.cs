@@ -21,7 +21,9 @@ namespace EstacionaFacil.Models
 		{
 			// TODO: Pedir para o usuário digitar uma numberPlate (ReadLine) e adicionar na lista "vehicle"
 			// *IMPLEMENTE AQUI*
+			string numberPlate = "";
 			Console.WriteLine("Digite a placa do veículo para estacionar:");
+			numberPlate = Console.ReadLine();
 		}
 
 		public void RemoveVehicle()
@@ -32,7 +34,7 @@ namespace EstacionaFacil.Models
 			// *IMPLEMENTE AQUI*
 			string numberPlate = "";
 
-			// Verifica se o veículo existe
+			// Check if the vehicle exists
 			if (vehicle.Any(x => x.ToUpper() == numberPlate.ToUpper()))
 			{
 				Console.WriteLine("Digite a quantidade de horas que o veículo permaneceu estacionado:");
