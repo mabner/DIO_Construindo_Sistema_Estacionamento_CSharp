@@ -7,14 +7,14 @@ namespace EstacionaFacil.Models
 {
 	public class Estacionamento
 	{
-		private decimal startingPrice = 0;
-		private decimal perHourRate = 0;
+		private decimal _startingPrice = 0;
+		private decimal _perHourRate = 0;
 		private List<string> vehicle = new List<string>();
 
 		public Estacionamento(decimal startingPrice, decimal perHourRate)
 		{
-			this.startingPrice = startingPrice;
-			this.perHourRate = perHourRate;
+			this._startingPrice = startingPrice;
+			this._perHourRate = perHourRate;
 		}
 
 		public void AddVehicle()
