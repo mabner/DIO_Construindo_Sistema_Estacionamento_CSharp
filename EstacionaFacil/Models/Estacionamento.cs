@@ -9,7 +9,7 @@ namespace EstacionaFacil.Models
     {
         private decimal _startingPrice = 0;
         private decimal _perHourRate = 0;
-        private List<string> vehicle = new List<string>();
+        private List<string> _vehicle = new List<string>();
 
         public Estacionamento(decimal startingPrice, decimal perHourRate)
         {
@@ -19,10 +19,10 @@ namespace EstacionaFacil.Models
 
         public void AddVehicle()
         {
-            string numberPlate = "";
             Console.WriteLine("Digite a placa do veículo para estacionar:");
-            numberPlate = Console.ReadLine();
-            vehicle.Add(numberPlate);
+            var numberPlate = Console.ReadLine();
+            if (numberPlate != null) _vehicle.Add(numberPlate);
+            Console.WriteLine($"Veículo {numberPlate} estacionado na vaga {_vehicle.Count}");
         }
 
         public void RemoveVehicle()
@@ -34,7 +34,7 @@ namespace EstacionaFacil.Models
             string numberPlate = "";
 
             // Check if the vehicle exists
-            if (vehicle.Any(x => x.ToUpper() == numberPlate.ToUpper()))
+            if (_vehicle.Any(x => x.ToUpper() == numberPlate.ToUpper()))
             {
                 Console.WriteLine("Digite a quantidade de horas que o veículo permaneceu estacionado:");
 
@@ -60,10 +60,10 @@ namespace EstacionaFacil.Models
         {
             // Checks for parked vehicles
             int parkingSlot = 1;
-            if (vehicle.Any())
+            if (_vehicle.Any())
             {
                 Console.WriteLine("Os veículos estacionados são:");
-                foreach (string item in vehicle)
+                foreach (string item in _vehicle)
                 {
                     Console.WriteLine($"Vaga {parkingSlot}: {item}");
                     parkingSlot++;
