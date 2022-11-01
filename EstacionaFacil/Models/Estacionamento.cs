@@ -20,33 +20,23 @@ namespace EstacionaFacil.Models
         public void AddVehicle()
         {
             Console.WriteLine("Digite a placa do veículo para estacionar:");
-            var numberPlate = Console.ReadLine();
-            if (numberPlate != null) _vehicle.Add(numberPlate);
-            Console.WriteLine($"Veículo {numberPlate} estacionado na vaga {_vehicle.Count}");
+            var numberPlate = Console.ReadLine().ToUpper();
+            _vehicle.Add(numberPlate);
+            Console.WriteLine($"Veículo {numberPlate} estacionado na vaga {_vehicle.IndexOf(numberPlate) + 1}");
         }
 
         public void RemoveVehicle()
         {
             Console.WriteLine("Digite a placa do veículo para remover:");
-
-            // Pedir para o usuário digitar a numberPlate e armazenar na variável numberPlate
-            // *IMPLEMENTE AQUI*
-            string numberPlate = "";
+            string numberPlate = Console.ReadLine().ToUpper();
 
             // Check if the vehicle exists
             if (_vehicle.Any(x => x.ToUpper() == numberPlate.ToUpper()))
             {
                 Console.WriteLine("Digite a quantidade de horas que o veículo permaneceu estacionado:");
-
-                // TODO: Pedir para o usuário digitar a quantidade de horas que o veículo permaneceu estacionado,
-                // TODO: Realizar o seguinte cálculo: "startingPrice + perHourRate * horas" para a variável valorTotal
-                // *IMPLEMENTE AQUI*
-                int hours = 0;
-                decimal totalPrice = 0;
-
-                // TODO: Remover a numberPlate digitada da lista de veículos
-                // *IMPLEMENTE AQUI*
-
+                int hours = Convert.ToInt32(Console.ReadLine());
+                decimal totalPrice = _startingPrice + (_perHourRate * hours);
+                _vehicle.Remove(numberPlate);
                 Console.WriteLine($"O veículo {numberPlate} foi removido e o preço total foi de: R$ {totalPrice}");
             }
             else
@@ -59,14 +49,12 @@ namespace EstacionaFacil.Models
         public void ListVehicles()
         {
             // Checks for parked vehicles
-            int parkingSlot = 1;
             if (_vehicle.Any())
             {
                 Console.WriteLine("Os veículos estacionados são:");
                 foreach (string item in _vehicle)
                 {
-                    Console.WriteLine($"Vaga {parkingSlot}: {item}");
-                    parkingSlot++;
+                    Console.WriteLine($"{_vehicle.IndexOf(item) + 1}: {item}");
                 }
             }
             else
