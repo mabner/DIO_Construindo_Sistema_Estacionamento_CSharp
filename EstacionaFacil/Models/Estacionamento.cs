@@ -59,12 +59,14 @@ namespace EstacionaFacil.Models
         public void ListVehicles()
         {
             // Checks for parked vehicles
+            int parkingSlot = 1;
             if (vehicle.Any())
             {
                 Console.WriteLine("Os veículos estacionados são:");
-                for (int i = 0; i < vehicle.Count; i++)
+                foreach (string item in vehicle)
                 {
-                    Console.WriteLine($"Vaga {i}: {vehicle[i]}");
+                    Console.WriteLine($"Vaga {parkingSlot}: {item}");
+                    parkingSlot++;
                 }
             }
             else
